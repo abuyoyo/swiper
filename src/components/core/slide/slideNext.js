@@ -3,7 +3,7 @@ export default function (speed = this.params.speed, runCallbacks = true, interna
   const swiper = this;
   const { params, animating } = swiper;
   if (params.loop) {
-    if (animating) return false;
+    if (animating && params.preventInteractionOnTransition) return false;
     swiper.loopFix();
     // eslint-disable-next-line
     swiper._clientLeft = swiper.$wrapperEl[0].clientLeft;

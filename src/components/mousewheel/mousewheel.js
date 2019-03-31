@@ -135,11 +135,11 @@ const Mousewheel = {
     if (!swiper.params.freeMode) {
       if (Utils.now() - swiper.mousewheel.lastScrollTime > 60) {
         if (delta < 0) {
-          if ((!swiper.isEnd || swiper.params.loop) && !swiper.animating) {
+          if ((!swiper.isEnd || swiper.params.loop) && !(swiper.animating && params.preventInteractionOnTransition)) {
             swiper.slideNext();
             swiper.emit('scroll', e);
           } else if (params.releaseOnEdges) return true;
-        } else if ((!swiper.isBeginning || swiper.params.loop) && !swiper.animating) {
+        } else if ((!swiper.isBeginning || swiper.params.loop) && !(swiper.animating && params.preventInteractionOnTransition)) {
           swiper.slidePrev();
           swiper.emit('scroll', e);
         } else if (params.releaseOnEdges) return true;
